@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Terms & Conditions — Flesh-USDT</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">Flesh-USDT <span class="muted">TRC20</span></div>
+      <button id="hamburgerT" class="hamburger" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <nav id="offcanvasT" class="offcanvas">
+    <button id="closeT" class="close">✕</button>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="help.html">Help</a></li>
+      <li><a href="terms.html">Terms & Conditions</a></li>
+    </ul>
+  </nav>
+  <div id="overlayT" class="overlay"></div>
+
+  <main class="container section">
+    <h2>Terms & Conditions</h2>
+    <p>यह पेज केवल demo/उदाहरण है। सभी लेन-देन उपयोगकर्ता की जिम्मेदारी पर होंगे। हम किसी भी भुगतान के लिए जिम्मेदार नहीं होंगे जब तक कि भुगतान सत्यापित न हो।</p>
+    <p>कृपया ध्यान दें कि वेबसाइट पर दर्ज जानकारी सत्यापित करने के बाद ही टोकन भेजे जाएँगे।</p>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>© <span id="yT"></span> Flesh-USDT</p></div></footer>
+
+  <script>
+    document.getElementById('yT').textContent = new Date().getFullYear();
+    function openMenu(overlayId, offcanvasId){document.getElementById(overlayId).classList.add('visible');document.getElementById(offcanvasId).classList.add('open');}
+    function closeMenu(overlayId, offcanvasId){document.getElementById(overlayId).classList.remove('visible');document.getElementById(offcanvasId).classList.remove('open');}
+    document.getElementById('hamburgerT').addEventListener('click', ()=> openMenu('overlayT','offcanvasT'));
+    document.getElementById('closeT').addEventListener('click', ()=> closeMenu('overlayT','offcanvasT'));
+    document.getElementById('overlayT').addEventListener('click', ()=> closeMenu('overlayT','offcanvasT'));
+  </script>
+</body>
+</html>
