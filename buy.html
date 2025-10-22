@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Buy — Flesh-USDT TRC20</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">Flesh-USDT <span class="muted">TRC20</span></div>
+      <button id="hamburger2" class="hamburger" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <nav id="offcanvas2" class="offcanvas">
+    <button id="closeMenu2" class="close">✕</button>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="help.html">Help</a></li>
+      <li><a href="terms.html">Terms & Conditions</a></li>
+    </ul>
+  </nav>
+  <div id="overlay2" class="overlay"></div>
+
+  <main>
+    <section class="section container">
+      <h2>Buy Flesh-USDT (TRC20)</h2>
+      <p>Kripya apna TRON Wallet ID (TRC20 compatible) नीचे दर्ज करें।</p>
+
+      <form id="walletForm" class="form">
+        <label>Wallet ID (TRC20):</label>
+        <input id="walletId" name="walletId" type="text" placeholder="जैसे: TXXXXXXXXXXXX..." required>
+        <div style="margin-top:12px;">
+          <button type="submit" class="btn primary">Buy</button>
+          <a href="index.html" class="btn outline">Back</a>
+        </div>
+      </form>
+
+      <p class="small" style="margin-top:12px;">
+        नोट: Buy पर क्लिक करने के बाद आप पेमेंट पेज पर जायेंगे जहाँ QR और पेमेंट लिंक दिखेगा।
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year2"></span> Flesh-USDT</p>
+    </div>
+  </footer>
+
+  <script>
+    // reuse small parts of script.js logic but keep this file standalone
+    document.addEventListener('DOMContentLoaded', function(){
+      const form = document.getElementById('walletForm');
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const wallet = document.getElementById('walletId').value.trim();
+        if(!wallet){
+          alert('कृपया Wallet ID डालें।');
+          return;
+        }
+        // Save to session storage and open pay page with wallet param
+        sessionStorage.setItem('flesh_wallet', wallet);
+        // open pay page
+        window.location.href = 'pay.html';
+      });
+
+      // offcanvas menu handling (copy of script.js behavior)
+      function openMenu(overlayId, offcanvasId){
+        document.getElementById(overlayId).classList.add('visible');
+        document.getElementById(offcanvasId).classList.add('open');
+      }
+      function closeMenu(overlayId, offcanvasId){
+        document.getElementById(overlayId).classList.remove('visible');
+        document.getElementById(offcanvasId).classList.remove('open');
+      }
+      document.getElementById('hamburger2').addEventListener('click', ()=> openMenu('overlay2','offcanvas2'));
+      document.getElementById('closeMenu2').addEventListener('click', ()=> closeMenu('overlay2','offcanvas2'));
+      document.getElementById('overlay2').addEventListener('click', ()=> closeMenu('overlay2','offcanvas2'));
+
+      document.getElementById('year2').textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>
