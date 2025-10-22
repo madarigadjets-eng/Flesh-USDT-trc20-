@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pay — Flesh-USDT TRC20</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">Flesh-USDT <span class="muted">TRC20</span></div>
+      <button id="hamburger3" class="hamburger" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <nav id="offcanvas3" class="offcanvas">
+    <button id="closeMenu3" class="close">✕</button>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="help.html">Help</a></li>
+      <li><a href="terms.html">Terms & Conditions</a></li>
+    </ul>
+  </nav>
+  <div id="overlay3" class="overlay"></div>
+
+  <main>
+    <section class="section container">
+      <h2>Payment — Flesh-USDT</h2>
+
+      <div class="card">
+        <h3>Wallet (आपने दर्ज किया)</h3>
+        <p id="showWallet" class="muted">—</p>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <h3>Scan QR या दिए गए लिंक से पे करें</h3>
+
+        <!-- PLACEHOLDER QR IMAGE: बदलें इस URL को अपने वास्तविक QR image URL से -->
+        <div style="text-align:center;margin:14px 0">
+          <img id="qrImage" src="https://via.placeholder.com/260x260.png?text=QR+Code+Placeholder" alt="QR Code" style="max-width:260px;border-radius:12px;">
+        </div>
+
+        <!-- PLACEHOLDER payment link: बदलें यहाँ पर अपनी वास्तविक payment link -->
+        <p style="text-align:center">
+          <a id="paymentLink" class="btn primary" href="#" target="_blank" rel="noopener">Open Payment Link</a>
+        </p>
+
+        <p class="small">(QR और Link को आपके पेमेंट सिस्टम/Wallet के अनुसार बदल दें.)</p>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <h3>Payment के बाद Transaction ID दर्ज करें</h3>
+        <form id="txnForm" class="form">
+          <label>Transaction ID (TXN):</label>
+          <input id="txnId" name="txnId" type="text" placeholder="TXN12345..." required>
+          <div style="margin-top:12px;">
+            <button type="submit" class="btn primary">Submit</button>
+            <a href="index.html" class="btn outline">Cancel</a>
+          </div>
+        </form>
+      </div>
+
+      <div id="notice" class="notice" style="display:none; margin-top:16px;"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year3"></span> Flesh-USDT</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      // show saved wallet (from sessionStorage set on buy.html)
+      const wallet = sessionStorage.getItem('flesh_wallet') || 'Not provided';
+      document.getElementById('showWallet').textContent = wallet;
+
+      // TODO: Replace these placeholders with your real QR image URL and payment page
+      // ----- EDIT HERE -----
+      const QR_IMAGE_URL = 'https://via.placeholder.com/260x260.png?text=QR+Code+Placeholder';
+      const PAYMENT_PAGE_URL = '#'; // replace with your real payment URL (e.g., a hosted invoice link)
+      // ---------------------
+
+      document.getElementById('qrImage').src = QR_IMAGE_URL;
+      const payLink = document.getElementById('paymentLink');
+      payLink.href = PAYMENT_PAGE_URL;
+
+      // txn form handling
+      const form = document.getElementById('txnForm');
+      const notice = document.getElementById('notice');
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const txn = document.getElementById('txnId').value.trim();
+        if(!txn){
+          alert('कृपया Transaction ID डालें।');
+          return;
+        }
+        // store txn and wallet in session (or send to backend if you have)
+        sessionStorage.setItem('flesh_txn', txn);
+        const payload = {
+          wallet: wallet,
+          txn: txn,
+          time: new Date().toISOString()
+        };
+        // In this static demo we just show the final notification.
+        notice.style.display = 'block';
+        notice.innerHTML = '<strong>धन्यवाद!</strong><br>कृपया प्रतीक्षा करें — हम आपके विवरण 2 घंटे में वेरिफाई करेंगे।<br><em>Me aap ke wallet me flesh aajaye gi</em>';
+        // Optionally clear form
+        form.reset();
+        // Scroll to notice
+        notice.scrollIntoView({behavior:'smooth'});
+      });
+
+      // Offcanvas menu handlers
+      function openMenu(overlayId, offcanvasId){
+        document.getElementById(overlayId).classList.add('visible');
+        document.getElementById(offcanvasId).classList.add('open');
+      }
+      function closeMenu(overlayId, offcanvasId){
+        document.getElementById(overlayId).classList.remove('visible');
+        document.getElementById(offcanvasId).classList.remove('open');
+      }
+      document.getElementById('hamburger3').addEventListener('click', ()=> openMenu('overlay3','offcanvas3'));
+      document.getElementById('closeMenu3').addEventListener('click', ()=> closeMenu('overlay3','offcanvas3'));
+      document.getElementById('overlay3').addEventListener('click', ()=> closeMenu('overlay3','offcanvas3'));
+
+      document.getElementById('year3').textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>
