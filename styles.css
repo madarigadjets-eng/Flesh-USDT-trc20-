@@ -1,0 +1,59 @@
+:root{
+  --bg:#ffffff; --text:#0f172a; --muted:#6b7280; --accent:#0ea5a4;
+  --maxw:1100px; --radius:12px; --shadow: 0 8px 24px rgba(2,6,23,0.06);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.container{max-width:var(--maxw);margin:0 auto;padding:20px}
+
+/* Header */
+.site-header{background:#fff;position:sticky;top:0;z-index:40;border-bottom:1px solid #eef2f7}
+.header-inner{display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:700;text-decoration:none;color:var(--text);font-size:1.1rem}
+.brand .muted{color:var(--muted);font-weight:600}
+
+/* Hamburger */
+.hamburger{font-size:1.6rem;background:none;border:0;padding:8px;cursor:pointer}
+
+/* Offcanvas */
+.offcanvas{position:fixed;right:-320px;top:0;width:320px;height:100%;background:#fff;box-shadow:-8px 0 24px rgba(2,6,23,0.12);z-index:50;padding:18px;transition:right .28s ease}
+.offcanvas.open{right:0}
+.offcanvas .close{background:none;border:0;font-size:1.3rem;float:right;cursor:pointer}
+.offcanvas ul{list-style:none;padding:0;margin:36px 0 0 0}
+.offcanvas li{margin-bottom:12px}
+.offcanvas a{text-decoration:none;color:var(--text);font-weight:600}
+
+/* overlay */
+.overlay{position:fixed;inset:0;background:rgba(2,6,23,0.3);opacity:0;visibility:hidden;transition:opacity .2s ease;z-index:45}
+.overlay.visible{opacity:1;visibility:visible}
+
+/* Hero */
+.hero{padding:36px 0}
+.hero-inner{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
+.hero h1{font-size:2rem;margin:0}
+.lead{color:var(--muted);margin-top:10px}
+.accent{color:var(--accent)}
+.hero-image img{max-width:100%;border-radius:12px;box-shadow:var(--shadow)}
+
+/* Buttons */
+.btn{display:inline-block;padding:10px 16px;border-radius:10px;text-decoration:none;border:0;cursor:pointer}
+.primary{background:var(--accent);color:#fff}
+.outline{background:transparent;border:1px solid var(--accent);color:var(--accent)}
+
+/* sections & cards */
+.section{padding:28px 0}
+.card{background:#fff;padding:16px;border-radius:10px;box-shadow:var(--shadow)}
+.form input,.form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6eef1;font-size:1rem;margin-top:6px}
+
+/* notice */
+.notice{background:#f8fff9;border-left:4px solid var(--accent);padding:12px;border-radius:8px;color:#064e47}
+
+/* footer */
+.site-footer{border-top:1px solid #f1f5f9;padding:18px 0;margin-top:30px;color:var(--muted)}
+
+/* responsive */
+@media (max-width:900px){
+  .hero-inner{grid-template-columns:1fr}
+  .offcanvas{width:100%;right:-100%}
+}
