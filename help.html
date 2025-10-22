@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Help — Flesh-USDT</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">Flesh-USDT <span class="muted">TRC20</span></div>
+      <button id="hamburgerHelp" class="hamburger" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <nav id="offcanvasHelp" class="offcanvas">
+    <button id="closeHelp" class="close">✕</button>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="help.html">Help</a></li>
+      <li><a href="terms.html">Terms & Conditions</a></li>
+    </ul>
+  </nav>
+  <div id="overlayHelp" class="overlay"></div>
+
+  <main class="container section">
+    <h2>Help</h2>
+    <p>अगर आपको पेमेंट या Txn ID में कोई समस्या हो तो कृपया हमें नीचे दिए गए मेल पर लिखें:</p>
+    <p><a href="mailto:your.email@example.com">your.email@example.com</a></p>
+    <p>या साइट के Contact सेक्शन में दिए नंबर पर कॉल करें।</p>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>© <span id="yHelp"></span> Flesh-USDT</p></div></footer>
+
+  <script>
+    document.getElementById('yHelp').textContent = new Date().getFullYear();
+    // offcanvas
+    function openMenu(overlayId, offcanvasId){document.getElementById(overlayId).classList.add('visible');document.getElementById(offcanvasId).classList.add('open');}
+    function closeMenu(overlayId, offcanvasId){document.getElementById(overlayId).classList.remove('visible');document.getElementById(offcanvasId).classList.remove('open');}
+    document.getElementById('hamburgerHelp').addEventListener('click', ()=> openMenu('overlayHelp','offcanvasHelp'));
+    document.getElementById('closeHelp').addEventListener('click', ()=> closeMenu('overlayHelp','offcanvasHelp'));
+    document.getElementById('overlayHelp').addEventListener('click', ()=> closeMenu('overlayHelp','offcanvasHelp'));
+  </script>
+</body>
+</html>
